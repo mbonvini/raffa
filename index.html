@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="Kids Playground">
+<meta name="keywords" content="Python,Javascript,Bryton,Raphael,SVG,Kids,Programming">
+<meta charset="iso-8859-1">
+<title>Raffa</title>
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="brython.js"></script>
+<script src="raphael-min.js"></script>
+<script type="text/python3" src="kids_playground.py"></script>
+</head>
+<body onload="brython(1)">
+<div id="wrapper">
+  <div id="left">
+  </div>
+  <div id="right">
+	<h1>RAFFA</h1>
+	<h2>Disegna e fai muovere forme geometriche</h2>
+	<p>
+	  Scrivi un programma che genera delle forme geometriche e clicca sul pulsante
+	  disegna per visualizzarle nello schermo alla tua sinistra.
+	  Usa gli esempi per capire come generare dei nuovi disegni.
+	</p>
+	<button id="run" class="my_button" type="button">Disegna</button>
+	<button id="new_example" class="my_button" type="button">Nuovo esempio</button>
+	<button id="grid" class="my_button" type="button">Griglia</button>
+	<div id="editor">
+	</div>
+	<script src="/ace-builds-1.4.8/src-noconflict/ace.js" type="text/javascript" charset="utf-8">
+	</script>
+	<script>
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/textmate");
+      editor.session.setMode("ace/mode/python");
+	</script>
+  </div>
+</div>
+</body>
+</html>
