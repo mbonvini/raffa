@@ -1,7 +1,7 @@
 # Raffa
 
 A tool to let kids play in a browser by writing Python code that generates geometric shapes.
-The tool can be tested at []().
+The tool can be tested at [https://mbonvini.github.io/raffa](https://mbonvini.github.io/raffa/).
 
 This project uses
 - [Bryton (Python to Javascript)](https://brython.info/)

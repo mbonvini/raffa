@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="description" content="Kids Playground">
+<meta name="description" content="RAFFA - A drawing game">
 <meta name="keywords" content="Python,Javascript,Bryton,Raphael,SVG,Kids,Programming">
 <meta charset="iso-8859-1">
 <title>Raffa</title>
@@ -15,15 +15,20 @@
   <div id="left">
   </div>
   <div id="right">
-	<h1>RAFFA</h1>
-	<h2>Disegna e fai muovere forme geometriche</h2>
-	<p>
-	  Scrivi un programma che genera delle forme geometriche e clicca sul pulsante
-	  disegna per visualizzarle nello schermo alla tua sinistra.
-	  Usa gli esempi per capire come generare dei nuovi disegni.
-	</p>
+	<div id="div_header">
+	  <h1>RAFFA</h1>
+	  <h2>Crea e muovi forme geometriche</h2>
+	  <p>
+		Scrivi un programma (in Python) che genera delle forme geometriche e clicca sul pulsante
+		"Disegna" per visualizzarle nello schermo alla tua sinistra.
+		Usa gli esempi per capire come generare dei nuovi disegni. Non avere paura!
+		Modificali e prova a vedere che cosa succede...
+	  </p>
+	  <p id="colors_list"></p>
+	<div>
 	<button id="run" class="my_button" type="button">Disegna</button>
-	<button id="new_example" class="my_button" type="button">Nuovo esempio</button>
+	<button id="prev_example" class="my_button" type="button"><< Esempio</button>
+	<button id="next_example" class="my_button" type="button">Esempio >></button>
 	<button id="grid" class="my_button" type="button">Griglia</button>
 	<div id="editor">
 	</div>
