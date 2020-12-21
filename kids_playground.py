@@ -349,8 +349,32 @@ dt = 1.0
  .lato(100*SQRT2/2)
  .parti())"""
 
+EX_17 = """# Ecco come disegnare una stella a sei punte che contiene al suo interno
+# altre stelle a sei punte.
+a = 550
+
+for i in range(9):
+    if i % 3 == 0:
+        c = giallo
+    elif i % 3 == 1:
+        c = giallo_limone
+    else:
+        c = carota
+
+    (triangolo(x=400, y=350)
+    .lato(a)
+    .colore(c)
+    .ruota(90 if i % 2 else 0))
+
+    (triangolo(x=400, y=350)
+    .lato(a)
+    .colore(c)
+    .ruota(-90 if i % 2 else 180))
+
+    a = a * SQRT3 / 3"""
+
 EXAMPLES = [EX_1, EX_2, EX_3, EX_4, EX_5, EX_6, EX_7, EX_8, EX_9,
-            EX_10, EX_11, EX_12, EX_13, EX_14, EX_15, EX_16]
+            EX_10, EX_11, EX_12, EX_13, EX_14, EX_15, EX_16, EX_17]
 
 ITA_COLORS_TO_CSS = {
     "verde chiaro": "#55efc4",
