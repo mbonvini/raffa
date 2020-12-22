@@ -373,8 +373,159 @@ for i in range(9):
 
     a = a * SQRT3 / 3"""
 
+EX_18 = """# Degli esagoni che si trasformano in stelle
+centro_x, centro_y = 350, 380
+lato = 65
+
+
+def esagono_tipo_a(cx, cy, lato, aspetta=1, durata=2):
+    d = lato * SQRT3 / 6
+    b = d * SQRT3 / 2
+    (triangolo(x=cx, y=cy - 2 * d, lato=lato)
+    .ruota(180)
+    .colore(verde)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx, y=cy - 4 * d)
+    .ruota(120)
+    .parti(aspetta=aspetta))
+
+    (triangolo(x=cx + 2 * b, y=cy - d, lato=lato)
+    .ruota(0)
+    .colore(verde_chiaro)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx + 4 * b, y=cy - 2 * d)
+    .ruota(-60)
+    .parti(aspetta=aspetta))
+
+    (triangolo(x=cx + 2 * b, y=cy + d, lato=lato)
+    .ruota(180)
+    .colore(verde_smeraldo)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx + 4 * b, y=cy + 2 * d)
+    .ruota(240)
+    .parti(aspetta=aspetta))
+
+    (triangolo(x=cx, y=cy + 2 * d, lato=lato)
+    .ruota(0)
+    .colore(verde)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx, y=cy+4*d)
+    .ruota(-60)
+    .parti(aspetta=aspetta))
+
+    (triangolo(x=cx - 2 * b, y=cy + d, lato=lato)
+    .ruota(-60)
+    .colore(verde_chiaro)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx - 4 * b, y=cy + 2 * d)
+    .ruota(240)
+    .parti(aspetta=aspetta))
+
+    (triangolo(x=cx - 2*b, y=cy - d, lato=lato)
+    .ruota(0)
+    .colore(verde_smeraldo)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx - 4*b, y=cy - 2*d)
+    .ruota(60)
+    .parti(aspetta=aspetta))
+
+
+def esagono_tipo_b(cx, cy, lato, aspetta=1, durata=2):
+    # sinistra
+    (triangolo(x=cx - lato / SQRT3, y=cy, lato=lato)
+    .ruota(-30)
+    .colore(giallo)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx - 2 * lato / SQRT3, y=cy)
+    .ruota(30)
+    .parti(aspetta=aspetta))
+
+    # destra
+    (triangolo(x=cx + lato / SQRT3, y=cy, lato=lato)
+    .ruota(30)
+    .colore(giallo)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx + 2*lato / SQRT3, y=cy)
+    .ruota(-30)
+    .parti(aspetta=aspetta))
+
+    # alto-destra
+    (triangolo(x=cx + lato / SQRT3 / 2, y=cy - lato / 2, lato=lato)
+    .ruota(-30)
+    .colore(giallo_limone)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx + lato / SQRT3, y=cy - lato)
+    .ruota(30)
+    .parti(aspetta=aspetta))
+
+    # alto-sinistra
+    (triangolo(x=cx - lato / SQRT3 / 2, y=cy - lato /2, lato=lato)
+    .ruota(30)
+    .colore(girasole)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx - lato / SQRT3, y=cy - lato)
+    .ruota(-30)
+    .parti(aspetta=aspetta))
+
+    # basso-destra
+    (triangolo(x=cx + lato / SQRT3 / 2, y=cy + lato / 2, lato=lato)
+    .ruota(-30)
+    .colore(giallo_limone)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx + lato / SQRT3, y=cy + lato)
+    .ruota(30)
+    .parti(aspetta=aspetta))
+
+    # basso-sinistra
+    (triangolo(x=cx - lato / SQRT3 / 2, y=cy + lato /2, lato=lato)
+    .ruota(30)
+    .colore(girasole)
+    .aggiungi_animazione(durata=durata)
+    .posizione(x=cx - lato / SQRT3, y=cy + lato)
+    .ruota(-30)
+    .parti(aspetta=aspetta))
+
+
+esagono_tipo_a(centro_x, centro_y, lato * SQRT3 * SQRT3, aspetta=7, durata=1)
+esagono_tipo_b(centro_x, centro_y, lato * SQRT3, aspetta=6, durata=1)
+esagono_tipo_a(centro_x, centro_y, lato, aspetta=5, durata=1)
+esagono_tipo_b(centro_x, centro_y, lato / SQRT3, aspetta=4, durata=1)
+esagono_tipo_a(centro_x, centro_y, lato / SQRT3 / SQRT3, aspetta=3, durata=1)
+esagono_tipo_b(centro_x, centro_y, lato / SQRT3 / SQRT3 / SQRT3, aspetta=2, durata=1)
+"""
+
+EX_19 = """
+# Queste esempio mostra come si può creare un effetto 3d con delle
+# forme geometriche.
+l = 100
+cx = 350
+cy = 300
+distanza = 200
+
+# parete sinistra
+triangolo(x=cx - l * SQRT3 / 6, y=cy + l/2, lato=l).colore(verde).ruota(-30)
+# pavimento
+triangolo(x=cx, y=cy+l, lato=l).colore(verde).ruota(30)
+# cerchio
+(cerchio(x=cx + l * SQRT3 / 6 - distanza * SQRT3/2, y=cy + l/2 + distanza/2)
+ .raggio(l * 0.5)
+ .colore(rosso)
+ .aggiungi_animazione(durata=2)
+ .posizione(x=cx+l*SQRT3/6, y=cy+l/2)
+ .colore(melograno)
+ .parti())
+
+# parete destra
+triangolo(x=cx + l * SQRT3 / 3, y=cy+l, lato=l).colore(verde_smeraldo).ruota(-30)
+triangolo(x=cx + l * SQRT3 / 2, y=cy+l/2, lato=l).colore(verde_smeraldo).ruota(30)
+# tetto
+triangolo(x=cx, y=cy, lato=l).colore(verde_chiaro).ruota(30)
+triangolo(x=cx + l * SQRT3 / 3, y=cy, lato=l).colore(verde_chiaro).ruota(-30)
+"""
+
 EXAMPLES = [EX_1, EX_2, EX_3, EX_4, EX_5, EX_6, EX_7, EX_8, EX_9,
-            EX_10, EX_11, EX_12, EX_13, EX_14, EX_15, EX_16, EX_17]
+            EX_10, EX_11, EX_12, EX_13, EX_14, EX_15, EX_16, EX_17,
+            EX_18, EX_19]
 
 ITA_COLORS_TO_CSS = {
     "verde chiaro": "#55efc4",
