@@ -1,6 +1,7 @@
 from browser import document, window
 
 paper = window.Raphael("left", "100%", "100%")
+document["shape_info"].innerHTML = ""
 btn = document["run"]
 btn_grid = document["grid"]
 btn_next_example = document["next_example"]
@@ -123,7 +124,7 @@ c.parti()"""
 
 EX_7 = """# Ecco come disegnare un sacco di cerchi che hanno
 # dimensioni diverse
-for i in range(100, 700, 100):
+for i in conta(da=100, aggiungi=100, fino=700):
   cerchio().x(i).y(100).colore(viola).raggio(i / 15)"""
 
 EX_8 = """# Ecco come disegnare un cerchio e far scegliere al computer
@@ -135,8 +136,8 @@ cerchio().posizione(x=200, y=400).colore(colore_magico())"""
 
 EX_9 = """# Ecco un sacco di cerchi con colori casuali che si trasformano
 # in una bandiera
-for i in range(100, 700, 100):
-    for j in range(100, 700, 100):
+for i in conta(da=100, aggiungi=100, fino=700):
+    for j in conta(da=100, aggiungi=100, fino=700):
         (quadrato()
          .x(i if i <= j else i + 50)
          .y(j if j <= i else j + 50)
@@ -150,7 +151,7 @@ for i in range(100, 700, 100):
 
 EX_10 = """# In questo esempio facciamo finta che i cerchi siano delle palline
 #  e li facciamo scontrare
-for i in range(100, 700, 100):
+for i in conta(da=100, aggiungi=100, fino=700):
     (cerchio()
      .posizione(x=i, y=100)
      .colore(colore_magico(blu))
@@ -160,7 +161,7 @@ for i in range(100, 700, 100):
      .parti(aspetta=0.1 * i / 100))"""
 
 EX_11 = """# Facciamo mouvere tutti i cerchi lungo linee diagonali
-for i in range(100, 700, 100):
+for i in conta(da=100, aggiungi=100, fino=700):
     (triangolo()
      .posizione(x=i, y=100)
      .colore(colore_magico(blu))
@@ -494,8 +495,7 @@ esagono_tipo_a(centro_x, centro_y, lato / SQRT3 / SQRT3, aspetta=3, durata=1)
 esagono_tipo_b(centro_x, centro_y, lato / SQRT3 / SQRT3 / SQRT3, aspetta=2, durata=1)
 """
 
-EX_19 = """
-# Queste esempio mostra come si può creare un effetto 3d con delle
+EX_19 = """# Queste esempio mostra come si può creare un effetto 3d con delle
 # forme geometriche.
 l = 100
 cx = 350
@@ -528,17 +528,17 @@ EXAMPLES = [EX_1, EX_2, EX_3, EX_4, EX_5, EX_6, EX_7, EX_8, EX_9,
             EX_18, EX_19]
 
 ITA_COLORS_TO_CSS = {
-    "verde chiaro": "#55efc4",
+    "verde_chiaro": "#55efc4",
     "verde": "#00b894",
-    "verde acqua": "#00cec9",
-    "verde smeraldo": "#2ecc71",
-    "azzurro acqua": "#81ecec",
+    "verde_acqua": "#00cec9",
+    "verde_smeraldo": "#2ecc71",
+    "azzurro_acqua": "#81ecec",
     "azzurro": "#74b9ff",
     "celeste": "#0984e3",
     "blu": "#0000CD",
     "lilla": "#a29bfe",
     "viola": "#6c5ce7",
-    "giallo limone": "#ffeaa7",
+    "giallo_limone": "#ffeaa7",
     "giallo": "#fdcb6e",
     "girasole": "#f1c40f",
     "rosa": "#fab1a0",
@@ -547,30 +547,34 @@ ITA_COLORS_TO_CSS = {
     "zucca": "#d35400",
     "melograno": "#c0392b",
     "rosso": "#d63031",
-    "rosa caramella": "#fd79a8",
+    "rosa_caramella": "#fd79a8",
     "fucsia": "#e84393",
     "bianco": "white",
     "marrone": "#795548",
-    "grigio chiaro": "#dfe6e9",
+    "grigio_chiaro": "#dfe6e9",
     "grigio": "#b2bec3",
-    "grigio scuro": "#636e72",
+    "grigio_scuro": "#636e72",
     "cemento": "#95a5a6",
     "argento": "#bdc3c7",
     "nero": "#000000",
 }
 
+HEX_COLOR_TO_ITA = {v.lower(): k.lower() for k, v in ITA_COLORS_TO_CSS.items()}
+
+translate_color = lambda hex_color: HEX_COLOR_TO_ITA.get(hex_color.lower(), hex_color)
+
 giallo = "giallo"
-verde_chiaro = "verde chiaro"
+verde_chiaro = "verde_chiaro"
 verde = "verde"
-verde_acqua = "verde acqua"
-verde_smeraldo = "verde smeraldo"
-azzurro_acqua = "azzurro acqua"
+verde_acqua = "verde_acqua"
+verde_smeraldo = "verde_smeraldo"
+azzurro_acqua = "azzurro_acqua"
 azzurro = "azzurro"
 celeste = "celeste"
 blu = "blu"
 lilla = "lilla"
 viola = "viola"
-giallo_limone = "giallo limone"
+giallo_limone = "giallo_limone"
 giallo = "giallo"
 girasole = "girasole"
 rosa = "rosa"
@@ -579,13 +583,13 @@ carota = "carota"
 zucca = "zucca"
 melograno = "melograno"
 rosso = "rosso"
-rosa_caramella = "rosa caramella"
+rosa_caramella = "rosa_caramella"
 fucsia = "fucsia"
 bianco = "bianco"
 marrone = "marrone"
-grigio_chiaro = "grigio chiaro"
+grigio_chiaro = "grigio_chiaro"
 grigio = "grigio"
-grigio_scuro = "grigio scuro"
+grigio_scuro = "grigio_scuro"
 cemento = "cemento"
 argento = "argento"
 nero = "nero"
@@ -643,10 +647,10 @@ CERCHIO = "cerchio"
 TRIANGOLO = "triangolo"
 
 _default_color = {
-    STELLA: "yellow",
-    QUADRATO: "blue",
-    CERCHIO: "red",
-    TRIANGOLO: "green",
+    STELLA: ITA_COLORS_TO_CSS[giallo],
+    QUADRATO: ITA_COLORS_TO_CSS[blu],
+    CERCHIO: ITA_COLORS_TO_CSS[rosso],
+    TRIANGOLO: ITA_COLORS_TO_CSS[verde],
 }
 
 def is_element_visible(element):
@@ -799,9 +803,10 @@ class forma(object):
         self._forma = forma
         self._angolo = 0.0
         self._dimensione = dimensione
+        self._show_info = False
         path = _path_function(self._x, self._y, self._dimensione, self._forma)
         self._attrs = {
-            "fill": _default_color.get(forma, "red"),
+            "fill": _default_color.get(forma, rosso),
             "stroke-width": 0,
             "stroke": "white",
             "path": path,
@@ -811,7 +816,31 @@ class forma(object):
         self._durations = []
         self._new_attrs = []
         self.s = paper.path(path).attr(self._attrs)
+        self.s.click(self._on_click)
+        self.s.mouseout(self._on_mouseout)
         return self
+
+    def _on_mouseout(self, event, *args, **kwargs):
+        document["shape_info"].innerHTML = ""
+        self._show_info = False
+
+    def _description(self):
+        description = f"<b>{self._forma.capitalize()}</b>"
+        description += f"<br/>&#8227; posizione x = {self._x:.1f}"
+        description += f"<br/>&#8227; posizione y = {self._y:.1f}"
+        description += f"<br/>&#8227; colore = {translate_color(self._attrs['fill'])}"
+        description += f"<br/>&#8227; angolo = {self._angolo}"
+        description += f"<br/>&#8227; dimensione = {self._dimensione:.1f}"
+        if self._attrs["stroke-width"]:
+            description += f"<br/>&#8227; dimensione bordo = {self._attrs['stroke-width']}"
+            description += f"<br/>&#8227; colore bordo = {translate_color(self._attrs['stroke'])}"
+        return description
+
+    def  _on_click(self, event, *args, **kwargs):
+        if self._show_info:
+            return self._on_mouseout(event)
+        document["shape_info"].innerHTML = self._description()
+        self._show_info = True
 
     def _is_animating(self):
         return len(self._new_attrs) > 0
@@ -922,6 +951,18 @@ class quadrato(forma):
         super(quadrato, self).__init__(x, y, lato, forma=QUADRATO)
         return self
 
+    def _description(self):
+        description = f"<b>{self._forma.capitalize()}</b>"
+        description += f"<br/>&#8227; posizione x = {self._x:.1f}"
+        description += f"<br/>&#8227; posizione y = {self._y:.1f}"
+        description += f"<br/>&#8227; colore = {translate_color(self._attrs['fill'])}"
+        if self._angolo != 0.0:
+            description += f"<br/>&#8227; angolo = {self._angolo:.1f}"
+        description += f"<br/>&#8227; lato = {self._dimensione:.1f}"
+        if self._attrs["stroke-width"]:
+            description += f"<br/>&#8227; dimensione bordo = {self._attrs['stroke-width']}"
+            description += f"<br/>&#8227; colore bordo = {translate_color(self._attrs['stroke'])}"
+        return description
 
 class stella(forma):
 
@@ -929,6 +970,18 @@ class stella(forma):
         super(stella, self).__init__(x, y, raggio, forma=STELLA)
         return self
 
+    def _description(self):
+        description = f"<b>{self._forma.capitalize()}</b>"
+        description += f"<br/>&#8227; posizione x = {self._x:.1f}"
+        description += f"<br/>&#8227; posizione y = {self._y:.1f}"
+        description += f"<br/>&#8227; colore = {translate_color(self._attrs['fill'])}"
+        if self._angolo != 0.0:
+            description += f"<br/>&#8227; angolo = {self._angolo:.1f}"
+        description += f"<br/>&#8227; lato = {self._dimensione:.1f}"
+        if self._attrs["stroke-width"]:
+            description += f"<br/>&#8227; dimensione bordo = {self._attrs['stroke-width']}"
+            description += f"<br/>&#8227; colore bordo = {translate_color(self._attrs['stroke'])}"
+        return description
 
 class cerchio(forma):
 
@@ -936,6 +989,16 @@ class cerchio(forma):
         super(cerchio, self).__init__(x, y, raggio, forma=CERCHIO)
         return self
 
+    def _description(self):
+        description = f"<b>{self._forma.capitalize()}</b>"
+        description += f"<br/>&#8227; posizione x = {self._x:.1f}"
+        description += f"<br/>&#8227; posizione y = {self._y:.1f}"
+        description += f"<br/>&#8227; colore = {translate_color(self._attrs['fill'])}"
+        description += f"<br/>&#8227; raggio = {self._dimensione:.1f}"
+        if self._attrs["stroke-width"]:
+            description += f"<br/>&#8227; dimensione bordo = {self._attrs['stroke-width']}"
+            description += f"<br/>&#8227; colore bordo = {translate_color(self._attrs['stroke'])}"
+        return description
 
 class triangolo(forma):
 
@@ -943,12 +1006,27 @@ class triangolo(forma):
         super(triangolo, self).__init__(x, y, lato, forma=TRIANGOLO)
         return self
 
+    def _description(self):
+        description = f"<b>{self._forma.capitalize()}</b>"
+        description += f"<br/>&#8227; posizione x = {self._x:.1f}"
+        description += f"<br/>&#8227; posizione y = {self._y:.1f}"
+        description += f"<br/>&#8227; colore = {translate_color(self._attrs['fill'])}"
+        if self._angolo != 0.0:
+            description += f"<br/>&#8227; angolo = {self._angolo:.1f}"
+        description += f"<br/>&#8227; lato = {self._dimensione:.1f}"
+        if self._attrs["stroke-width"]:
+            description += f"<br/>&#8227; dimensione bordo = {self._attrs['stroke-width']}"
+            description += f"<br/>&#8227; colore bordo = {translate_color(self._attrs['stroke'])}"
+        return description
 
 def callback(ev):
     paper.clear()
-    print("callback:", window.show_grid)
     draw_grid()
-    exec(code_editor.getValue())
+    if code_editor.getSelectedText():
+        code_to_execute = code_editor.getSelectedText()
+    else:
+        code_to_execute = code_editor.getValue()
+    exec(code_to_execute)
 
 
 def toggle_grid(ev):
@@ -986,8 +1064,22 @@ def show_prev_example(ev):
     show_example(ev, increment=-1, save=True)
 
 
+def call_draw_callback(editor, *args, **kwargs):
+    callback(None)
+
+
+def conta(da=0, aggiungi=1, fino=10):
+    return range(da, fino, aggiungi)
+
+
 btn.bind("click", callback)
 btn_grid.bind("click", toggle_grid)
 btn_prev_example.bind("click", show_prev_example)
 btn_next_example.bind("click", show_next_example)
 show_example(None, increment=0, save=False)
+code_editor.commands.addCommand({
+    "name": 'execute',
+    "bindKey": {"win": "Ctrl-Enter",  "mac": "Command-Enter"},
+    "exec": call_draw_callback,
+    "readOnly": True
+})
