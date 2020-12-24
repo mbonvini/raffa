@@ -39,56 +39,67 @@ quadrato(x=400, y=150, lato=70).bordo(5, arancione)
 
 # Ed un triangolo con bordo verde smeraldo
 triangolo(x=500, y=200, lato=70).bordo(5, verde_smeraldo)
+
+# Ed una linea bianca
+linea().colore(bianco).spessore(10)
 """
 
 EX_2 = """# Ecco come disegnare un cerchio e farlo muovere
 # dal punto (100, 200) fino a (500, 400) in 2 secondi.
-(cerchio()
- .x(100)
- .y(200)
- .aggiungi_animazione(durata=2)
- .x(500)
- .y(400)
- .parti())"""
+c = cerchio()
+c.x(100)
+c.y(200)
+c.aggiungi_animazione(durata=2)
+c.x(500)
+c.y(400)
+c.parti()"""
+
+EX_2a = """# Ecco come disegnare una linea che collega due punti A e B
+l = linea()
+l.a(x=100, y=200)
+l.b(x=100, y=400)
+l.spessore(10)
+l.colore(bianco)
+"""
 
 EX_3 = """# Ecco come disegnare un cerchio e farlo muovere
 # dal punto (100, 200) fino a (500, 400), e contemporaneamente
 # cambiare il suo colore, il tutto in 2 secondi.
-(cerchio()
- .posizione(x=100, y=200)
- .aggiungi_animazione(durata=2)
- .posizione(x=500, y=400)
- .colore(blu)
- .parti())"""
+c = cerchio()
+c.posizione(x=100, y=200)
+c.aggiungi_animazione(durata=2)
+c.posizione(x=500, y=400)
+c.colore(blu)
+c.parti()"""
 
 EX_4 = """# Ecco come disegnare e far muovere contemporaneamente piu cerchi
-(cerchio()
- .posizione(x=100, y=200)
- .aggiungi_animazione(durata=2)
- .posizione(x=500, y=400)
- .colore(blu)
- .parti())
+c1 = cerchio()
+c1.posizione(x=100, y=200)
+c1.aggiungi_animazione(durata=2)
+c1.posizione(x=500, y=400)
+c1.colore(blu)
+c1.parti()
 
-(cerchio()
- .colore(blu)
- .posizione(x=500, y=200)
- .aggiungi_animazione(durata=2)
- .posizione(x=100, y=400)
- .colore(arancione)
- .parti())"""
+c2 = cerchio()
+c2.colore(blu)
+c2.posizione(x=500, y=200)
+c2.aggiungi_animazione(durata=2)
+c2.posizione(x=100, y=400)
+c2.colore(arancione)
+c2.parti()"""
 
 EX_5 = """# Ecco come disegnare un cerchio blu con raggio di dimensioni 100
 # e farlo diventare un quadrato di dimensioni 200 con un bordo rosso
-(cerchio()
- .colore(blu)
- .posizione(x=350, y=350)
- .raggio(100)
- .aggiungi_animazione(durata=2)
- .cambia_forma(QUADRATO)
- .colore(arancione)
- .bordo(10, rosso)
- .lato(200)
- .parti())"""
+c = cerchio()
+c.colore(blu)
+c.posizione(x=350, y=350)
+c.raggio(100)
+c.aggiungi_animazione(durata=2)
+c.cambia_forma(QUADRATO)
+c.colore(arancione)
+c.bordo(10, rosso)
+c.lato(200)
+c.parti()"""
 
 EX_6 = """# Ecco come disegnare un cerchio e farlo muovere
 # dal punto (100, 200) fino a (500, 400) in 2 secondi.
@@ -134,70 +145,146 @@ cerchio().posizione(x=200, y=100).colore(colore_magico())
 cerchio().posizione(x=200, y=250).colore(colore_magico())
 cerchio().posizione(x=200, y=400).colore(colore_magico())"""
 
+EX_8a = """# Ecco come creare delle linee che creano una specie di ragnatela,
+# guarda bene e segui i colori per capire bene come funziona
+
+# Linea bianca
+l1 = linea()
+l1.a(x=100, y=100)
+l1.b(x=700, y=200)
+l1.spessore(5)
+l1.colore(bianco)
+
+# Linea verde
+l2 = linea()
+l2.a(x=200, y=100)
+l2.b(x=700, y=300)
+l2.spessore(5)
+l2.colore(verde)
+
+# Linea rossa
+l3 = linea()
+l3.a(x=300, y=100)
+l3.b(x=700, y=400)
+l3.spessore(5)
+l3.colore(rosso)
+
+# Linea celeste
+l4 = linea()
+l4.a(x=400, y=100)
+l4.b(x=700, y=500)
+l4.spessore(5)
+l4.colore(celeste)
+
+# Linea gialla
+l5 = linea()
+l5.a(x=500, y=100)
+l5.b(x=700, y=600)
+l5.spessore(5)
+l5.colore(giallo)
+
+# Linea arancione
+l6 = linea()
+l6.a(x=600, y=100)
+l6.b(x=700, y=700)
+l6.spessore(5)
+l6.colore(carota)
+"""
+
+EX_8b = """# Ecco come creare delle linee che creano una specie di ragnatela,
+# guarda bene e segui i colori per capire bene come funziona
+
+for i in conta(da=100, aggiungi=20, fino=600):
+  # Linee bianche
+  l1 = linea()
+  l1.a(x=i, y=100)
+  l1.b(x=600, y=20 + i)
+  l1.spessore(2)
+  l1.colore(bianco)
+
+  # Linee verdi
+  l2 = linea()
+  l2.a(x=700 - i, y=100)
+  l2.b(x=100, y=20 + i)
+  l2.spessore(2)
+  l2.colore(verde)
+
+  # Linee rosse
+  l3 = linea()
+  l3.a(x=i, y=600)
+  l3.b(x=600, y=700 - 20 - i)
+  l3.spessore(2)
+  l3.colore(rosso)
+
+  # Linee gialle
+  l3 = linea()
+  l3.a(x=700 - i, y=600)
+  l3.b(x=100, y=700 - 20 - i)
+  l3.spessore(2)
+  l3.colore(giallo)"""
+
 EX_9 = """# Ecco un sacco di cerchi con colori casuali che si trasformano
 # in una bandiera
 for i in conta(da=100, aggiungi=100, fino=700):
     for j in conta(da=100, aggiungi=100, fino=700):
-        (quadrato()
-         .x(i if i <= j else i + 50)
-         .y(j if j <= i else j + 50)
-         .lato(10)
-         .colore(grigio)
-         .aggiungi_animazione(durata=1)
-         .colore(rosso if i > j else (verde if i < j else bianco))
-         .lato(90)
-         .posizione(x=i, y=j)
-         .parti(aspetta=1))"""
+        q = quadrato()
+        q.x(i if i <= j else i + 50)
+        q.y(j if j <= i else j + 50)
+        q.lato(10)
+        q.colore(grigio)
+        q.aggiungi_animazione(durata=1)
+        q.colore(rosso if i > j else (verde if i < j else bianco))
+        q.lato(90)
+        q.posizione(x=i, y=j)
+        q.parti(aspetta=1)"""
 
 EX_10 = """# In questo esempio facciamo finta che i cerchi siano delle palline
 #  e li facciamo scontrare
 for i in conta(da=100, aggiungi=100, fino=700):
-    (cerchio()
-     .posizione(x=i, y=100)
-     .colore(colore_magico(blu))
-     .raggio(40)
-     .aggiungi_animazione(durata=0.1)
-     .x(i+20)
-     .parti(aspetta=0.1 * i / 100))"""
+    c = cerchio()
+    c.posizione(x=i, y=100)
+    c.colore(colore_magico(blu))
+    c.raggio(40)
+    c.aggiungi_animazione(durata=0.1)
+    c.x(i+20)
+    c.parti(aspetta=0.1 * i / 100)"""
 
 EX_11 = """# Facciamo mouvere tutti i cerchi lungo linee diagonali
 for i in conta(da=100, aggiungi=100, fino=700):
-    (triangolo()
-     .posizione(x=i, y=100)
-     .colore(colore_magico(blu))
-     .lato(80)
-     .aggiungi_animazione(durata=2)
-     .posizione(x=600, y=700 - i)
-     .ruota(90)
-     .parti(aspetta=1))"""
+    t = triangolo()
+    t.posizione(x=i, y=100)
+    t.colore(colore_magico(blu))
+    t.lato(80)
+    t.aggiungi_animazione(durata=2)
+    t.posizione(x=600, y=700 - i)
+    t.ruota(90)
+    t.parti(aspetta=1)"""
 
 EX_12 = """# Disegnamo un cerchio fatto da tanti cerchi
 for angolo in range(0, 360, 10):
-    (cerchio()
-     .posizione(x=350, y=350)
-     .raggio(5)
-     .colore(grigio)
-     .aggiungi_animazione(durata=2)
-     .x(350 + 250 * cos(angolo))
-     .y(350 + 250 * sin(angolo))
-     .raggio(20)
-     .colore(colore_magico(verde))
-     .parti(aspetta=1)
-    )"""
+    c = cerchio()
+    c.posizione(x=350, y=350)
+    c.raggio(5)
+    c.colore(grigio)
+    c.aggiungi_animazione(durata=2)
+    c.x(350 + 250 * cos(angolo))
+    c.y(350 + 250 * sin(angolo))
+    c.raggio(20)
+    c.colore(colore_magico(verde))
+    c.parti(aspetta=1)"""
 
 EX_13 = """# Disegnamo una spirale
 for angolo in range(0, 4 * 360, 10):
-    (cerchio()
-     .posizione(x=350, y=350)
-     .raggio(1)
-     .colore(grigio)
-     .aggiungi_animazione(durata=2)
-     .x(350 + (angolo / 4.0 / 360.0) * 300 * cos(angolo))
-     .y(350 + (angolo / 4.0 / 360.0) * 300 * sin(angolo))
-     .raggio(1 + (angolo / 4.0 / 360.0) * 20)
-     .colore(colore_magico("viola"))
-     .parti(aspetta=1)
-    )"""
+    c = cerchio()
+    c.posizione(x=350, y=350)
+    c.raggio(1)
+    c.colore(grigio)
+    c.aggiungi_animazione(durata=2)
+    c.x(350 + (angolo / 4.0 / 360.0) * 300 * cos(angolo))
+    c.y(350 + (angolo / 4.0 / 360.0) * 300 * sin(angolo))
+    c.raggio(1 + (angolo / 4.0 / 360.0) * 20)
+    c.colore(colore_magico("viola"))
+    c.parti(aspetta=1)"""
 
 EX_14 = """# Disegnamo dei fiori di vari colori
 
@@ -213,24 +300,24 @@ for centro, colore in posizioni_e_colori:
     x0, y0 = centro
     for angolo in range(0, 360, 30):
         # Aggiungiamo i petali
-        (cerchio()
-         .posizione(x=x0, y=y0)
-         .raggio(5)
-         .colore(grigio)
-         .aggiungi_animazione(durata=2)
-         .x(x0 + 75 * cos(angolo))
-         .y(y0 + 75 * sin(angolo))
-         .raggio(30)
-         .colore(colore_magico(colore))
-         .parti(aspetta=1))
+        c = cerchio()
+        c.posizione(x=x0, y=y0)
+        c.raggio(5)
+        c.colore(grigio)
+        c.aggiungi_animazione(durata=2)
+        c.x(x0 + 75 * cos(angolo))
+        c.y(y0 + 75 * sin(angolo))
+        c.raggio(30)
+        c.colore(colore_magico(colore))
+        c.parti(aspetta=1)
 
         # Un cerchio in ogni centro
-        (cerchio()
-         .posizione(x=x0, y=y0)
-         .colore(girasole)
-         .aggiungi_animazione(durata=2)
-         .raggio(50)
-         .parti(aspetta=1))"""
+        c = cerchio()
+        c.posizione(x=x0, y=y0)
+        c.colore(girasole)
+        c.aggiungi_animazione(durata=2)
+        c.raggio(50)
+        c.parti(aspetta=1)"""
 
 EX_15 = """# Quattro forme,  un cerchio, una stella, un quadrato ed un
 # triangolo. Queste forme decisono di scambiarsi di posto, ed ogni volta
@@ -267,88 +354,88 @@ for i, oggetto in enumerate(oggetti):
 EX_16 = """# Questa è la storia di quattro quadrati che si uniscono per formare un fiore.
 dt = 1.0
 
-(quadrato(x=200, y=200)
- .colore(rosso)
- .aggiungi_animazione(durata=dt)
- .posizione(x=300, y=300)
- .aggiungi_animazione(durata=dt)
- .ruota(45)
- .aggiungi_animazione(durata=dt)
- .lato(100 * SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=300, y=250)
- .ruota(0)
- .aggiungi_animazione(durata=dt)
- .posizione(x=300, y=400 - 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400 - 50*SQRT2, y=400 - 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400, y=400)
- .ruota(0)
- .lato(200)
- .parti())
+q1 = quadrato(x=200, y=200)
+q1.colore(rosso)
+q1.aggiungi_animazione(durata=dt)
+q1.posizione(x=300, y=300)
+q1.aggiungi_animazione(durata=dt)
+q1.ruota(45)
+q1.aggiungi_animazione(durata=dt)
+q1.lato(100 * SQRT2)
+q1.aggiungi_animazione(durata=dt)
+q1.posizione(x=300, y=250)
+q1.ruota(0)
+q1.aggiungi_animazione(durata=dt)
+q1.posizione(x=300, y=400 - 50*SQRT2)
+q1.aggiungi_animazione(durata=dt)
+q1.posizione(x=400 - 50*SQRT2, y=400 - 50*SQRT2)
+q1.aggiungi_animazione(durata=dt)
+q1.posizione(x=400, y=400)
+q1.ruota(0)
+q1.lato(200)
+q1.parti()
 
-(quadrato(x=600, y=200)
- .colore(celeste)
- .aggiungi_animazione(durata=dt)
- .posizione(x=500, y=300)
- .aggiungi_animazione(durata=dt)
- .ruota(45)
- .aggiungi_animazione(durata=dt)
- .lato(100 * SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=500, y=250)
- .ruota(0)
- .aggiungi_animazione(durata=dt)
- .posizione(x=500, y=400 - 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400 + 50*SQRT2, y=400 - 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400, y=400)
- .ruota(45)
- .parti())
+q2 = quadrato(x=600, y=200)
+q2.colore(celeste)
+q2.aggiungi_animazione(durata=dt)
+q2.posizione(x=500, y=300)
+q2.aggiungi_animazione(durata=dt)
+q2.ruota(45)
+q2.aggiungi_animazione(durata=dt)
+q2.lato(100 * SQRT2)
+q2.aggiungi_animazione(durata=dt)
+q2.posizione(x=500, y=250)
+q2.ruota(0)
+q2.aggiungi_animazione(durata=dt)
+q2.posizione(x=500, y=400 - 50*SQRT2)
+q2.aggiungi_animazione(durata=dt)
+q2.posizione(x=400 + 50*SQRT2, y=400 - 50*SQRT2)
+q2.aggiungi_animazione(durata=dt)
+q2.posizione(x=400, y=400)
+q2.ruota(45)
+q2.parti()
 
-(quadrato(x=600, y=600)
- .colore(verde)
- .aggiungi_animazione(durata=dt)
- .posizione(x=500, y=500)
- .aggiungi_animazione(durata=dt)
- .ruota(45)
- .aggiungi_animazione(durata=dt)
- .lato(100 * SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=500, y=550)
- .ruota(0)
- .aggiungi_animazione(durata=dt)
- .posizione(x=500, y=400 + 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400 + 50*SQRT2, y=400 + 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400, y=400)
- .ruota(0)
- .lato(100)
- .parti())
+q3 = quadrato(x=600, y=600)
+q3.colore(verde)
+q3.aggiungi_animazione(durata=dt)
+q3.posizione(x=500, y=500)
+q3.aggiungi_animazione(durata=dt)
+q3.ruota(45)
+q3.aggiungi_animazione(durata=dt)
+q3.lato(100 * SQRT2)
+q3.aggiungi_animazione(durata=dt)
+q3.posizione(x=500, y=550)
+q3.ruota(0)
+q3.aggiungi_animazione(durata=dt)
+q3.posizione(x=500, y=400 + 50*SQRT2)
+q3.aggiungi_animazione(durata=dt)
+q3.posizione(x=400 + 50*SQRT2, y=400 + 50*SQRT2)
+q3.aggiungi_animazione(durata=dt)
+q3.posizione(x=400, y=400)
+q3.ruota(0)
+q3.lato(100)
+q3.parti()
 
-(quadrato(x=200, y=600)
- .colore(giallo)
- .aggiungi_animazione(durata=dt)
- .posizione(x=300, y=500)
- .aggiungi_animazione(durata=dt)
- .ruota(45)
- .aggiungi_animazione(durata=dt)
- .lato(100 * SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=300, y=550)
- .ruota(0)
- .aggiungi_animazione(durata=dt)
- .posizione(x=300, y=400 + 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400 - 50*SQRT2, y=400 + 50*SQRT2)
- .aggiungi_animazione(durata=dt)
- .posizione(x=400, y=400)
- .ruota(45)
- .lato(100*SQRT2/2)
- .parti())"""
+q4 = quadrato(x=200, y=600)
+q4.colore(giallo)
+q4.aggiungi_animazione(durata=dt)
+q4.posizione(x=300, y=500)
+q4.aggiungi_animazione(durata=dt)
+q4.ruota(45)
+q4.aggiungi_animazione(durata=dt)
+q4.lato(100 * SQRT2)
+q4.aggiungi_animazione(durata=dt)
+q4.posizione(x=300, y=550)
+q4.ruota(0)
+q4.aggiungi_animazione(durata=dt)
+q4.posizione(x=300, y=400 + 50*SQRT2)
+q4.aggiungi_animazione(durata=dt)
+q4.posizione(x=400 - 50*SQRT2, y=400 + 50*SQRT2)
+q4.aggiungi_animazione(durata=dt)
+q4.posizione(x=400, y=400)
+q4.ruota(45)
+q4.lato(100*SQRT2/2)
+q4.parti()"""
 
 EX_17 = """# Ecco come disegnare una stella a sei punte che contiene al suo interno
 # altre stelle a sei punte.
@@ -363,14 +450,14 @@ for i in range(9):
         c = carota
 
     (triangolo(x=400, y=350)
-    .lato(a)
-    .colore(c)
-    .ruota(90 if i % 2 else 0))
+     .lato(a)
+     .colore(c)
+     .ruota(90 if i % 2 else 0))
 
     (triangolo(x=400, y=350)
-    .lato(a)
-    .colore(c)
-    .ruota(-90 if i % 2 else 180))
+     .lato(a)
+     .colore(c)
+     .ruota(-90 if i % 2 else 180))
 
     a = a * SQRT3 / 3"""
 
@@ -383,108 +470,108 @@ def esagono_tipo_a(cx, cy, lato, aspetta=1, durata=2):
     d = lato * SQRT3 / 6
     b = d * SQRT3 / 2
     (triangolo(x=cx, y=cy - 2 * d, lato=lato)
-    .ruota(180)
-    .colore(verde)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx, y=cy - 4 * d)
-    .ruota(120)
-    .parti(aspetta=aspetta))
+     .ruota(180)
+     .colore(verde)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx, y=cy - 4 * d)
+     .ruota(120)
+     .parti(aspetta=aspetta))
 
     (triangolo(x=cx + 2 * b, y=cy - d, lato=lato)
-    .ruota(0)
-    .colore(verde_chiaro)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx + 4 * b, y=cy - 2 * d)
-    .ruota(-60)
-    .parti(aspetta=aspetta))
+     .ruota(0)
+     .colore(verde_chiaro)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx + 4 * b, y=cy - 2 * d)
+     .ruota(-60)
+     .parti(aspetta=aspetta))
 
     (triangolo(x=cx + 2 * b, y=cy + d, lato=lato)
-    .ruota(180)
-    .colore(verde_smeraldo)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx + 4 * b, y=cy + 2 * d)
-    .ruota(240)
-    .parti(aspetta=aspetta))
+     .ruota(180)
+     .colore(verde_smeraldo)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx + 4 * b, y=cy + 2 * d)
+     .ruota(240)
+     .parti(aspetta=aspetta))
 
     (triangolo(x=cx, y=cy + 2 * d, lato=lato)
-    .ruota(0)
-    .colore(verde)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx, y=cy+4*d)
-    .ruota(-60)
-    .parti(aspetta=aspetta))
+     .ruota(0)
+     .colore(verde)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx, y=cy+4*d)
+     .ruota(-60)
+     .parti(aspetta=aspetta))
 
     (triangolo(x=cx - 2 * b, y=cy + d, lato=lato)
-    .ruota(-60)
-    .colore(verde_chiaro)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx - 4 * b, y=cy + 2 * d)
-    .ruota(240)
-    .parti(aspetta=aspetta))
+     .ruota(-60)
+     .colore(verde_chiaro)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx - 4 * b, y=cy + 2 * d)
+     .ruota(240)
+     .parti(aspetta=aspetta))
 
     (triangolo(x=cx - 2*b, y=cy - d, lato=lato)
-    .ruota(0)
-    .colore(verde_smeraldo)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx - 4*b, y=cy - 2*d)
-    .ruota(60)
-    .parti(aspetta=aspetta))
+     .ruota(0)
+     .colore(verde_smeraldo)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx - 4*b, y=cy - 2*d)
+     .ruota(60)
+     .parti(aspetta=aspetta))
 
 
 def esagono_tipo_b(cx, cy, lato, aspetta=1, durata=2):
     # sinistra
     (triangolo(x=cx - lato / SQRT3, y=cy, lato=lato)
-    .ruota(-30)
-    .colore(giallo)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx - 2 * lato / SQRT3, y=cy)
-    .ruota(30)
-    .parti(aspetta=aspetta))
+     .ruota(-30)
+     .colore(giallo)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx - 2 * lato / SQRT3, y=cy)
+     .ruota(30)
+     .parti(aspetta=aspetta))
 
     # destra
     (triangolo(x=cx + lato / SQRT3, y=cy, lato=lato)
-    .ruota(30)
-    .colore(giallo)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx + 2*lato / SQRT3, y=cy)
-    .ruota(-30)
-    .parti(aspetta=aspetta))
+     .ruota(30)
+     .colore(giallo)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx + 2*lato / SQRT3, y=cy)
+     .ruota(-30)
+     .parti(aspetta=aspetta))
 
     # alto-destra
     (triangolo(x=cx + lato / SQRT3 / 2, y=cy - lato / 2, lato=lato)
-    .ruota(-30)
-    .colore(giallo_limone)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx + lato / SQRT3, y=cy - lato)
-    .ruota(30)
-    .parti(aspetta=aspetta))
+     .ruota(-30)
+     .colore(giallo_limone)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx + lato / SQRT3, y=cy - lato)
+     .ruota(30)
+     .parti(aspetta=aspetta))
 
     # alto-sinistra
     (triangolo(x=cx - lato / SQRT3 / 2, y=cy - lato /2, lato=lato)
-    .ruota(30)
-    .colore(girasole)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx - lato / SQRT3, y=cy - lato)
-    .ruota(-30)
-    .parti(aspetta=aspetta))
+     .ruota(30)
+     .colore(girasole)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx - lato / SQRT3, y=cy - lato)
+     .ruota(-30)
+     .parti(aspetta=aspetta))
 
     # basso-destra
     (triangolo(x=cx + lato / SQRT3 / 2, y=cy + lato / 2, lato=lato)
-    .ruota(-30)
-    .colore(giallo_limone)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx + lato / SQRT3, y=cy + lato)
-    .ruota(30)
-    .parti(aspetta=aspetta))
+     .ruota(-30)
+     .colore(giallo_limone)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx + lato / SQRT3, y=cy + lato)
+     .ruota(30)
+     .parti(aspetta=aspetta))
 
     # basso-sinistra
     (triangolo(x=cx - lato / SQRT3 / 2, y=cy + lato /2, lato=lato)
-    .ruota(30)
-    .colore(girasole)
-    .aggiungi_animazione(durata=durata)
-    .posizione(x=cx - lato / SQRT3, y=cy + lato)
-    .ruota(-30)
-    .parti(aspetta=aspetta))
+     .ruota(30)
+     .colore(girasole)
+     .aggiungi_animazione(durata=durata)
+     .posizione(x=cx - lato / SQRT3, y=cy + lato)
+     .ruota(-30)
+     .parti(aspetta=aspetta))
 
 
 esagono_tipo_a(centro_x, centro_y, lato * SQRT3 * SQRT3, aspetta=7, durata=1)
@@ -523,7 +610,7 @@ triangolo(x=cx, y=cy, lato=l).colore(verde_chiaro).ruota(30)
 triangolo(x=cx + l * SQRT3 / 3, y=cy, lato=l).colore(verde_chiaro).ruota(-30)
 """
 
-EXAMPLES = [EX_1, EX_2, EX_3, EX_4, EX_5, EX_6, EX_7, EX_8, EX_9,
+EXAMPLES = [EX_1, EX_2, EX_2a, EX_3, EX_4, EX_5, EX_6, EX_7, EX_8, EX_8a, EX_8b, EX_9,
             EX_10, EX_11, EX_12, EX_13, EX_14, EX_15, EX_16, EX_17,
             EX_18, EX_19]
 
@@ -773,6 +860,16 @@ def _triangle_path(x, y, length, angle=0.0):
     return path
 
 
+def _line_path(x1, y1, x2, y2, angle=0.0):
+    x = (x1 + x2) / 2
+    y = (y1 + y2) / 2
+    x1, y1 = rotate(x1, y1, x, y, angle)
+    x2, y2 = rotate(x2, y2, x, y, angle)
+    path = f"M {x1} {y1} "
+    path += f"L {x2} {y2}"
+    return path
+
+
 def rotate(x, y, x_center, y_center, angle):
     new_x = ((x - x_center) * window.Math.cos(angle * PI / 180.0)
              - (y - y_center) * window.Math.sin(angle * PI / 180.0) + x_center)
@@ -793,6 +890,125 @@ def _path_function(x, y, size, forma, angolo=0.0):
     else:
         print(f"Wrong path: {forma}")
         return _circle_path(x, y, size)
+
+
+class linea(object):
+
+    def __init__(self, a=(100, 100), b=(200, 200)):
+        self._a = a
+        self._b = b
+        self._angolo = 0.0
+        self._show_info = False
+        path = _line_path(self._a[0], self._a[1], self._b[0], self._b[1], self._angolo)
+        self._attrs = {
+            "stroke-width": 3,
+            "stroke": bianco,
+            "path": path,
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round",
+        }
+        self._durations = []
+        self._new_attrs = []
+        self.s = paper.path(path).attr(self._attrs)
+        self.s.click(self._on_click)
+        self.s.mouseout(self._on_mouseout)
+        return self
+
+    def _on_mouseout(self, event, *args, **kwargs):
+        document["shape_info"].innerHTML = ""
+        self._show_info = False
+
+    def _description(self):
+        description = f"<b>Linea</b>"
+        description += f"<br/>&#8227; punto A = {self._a[0]:.1f}, {self._a[1]:.1f}"
+        description += f"<br/>&#8227; punto B = {self._b[0]:.1f}, {self._b[1]:.1f}"
+        description += f"<br/>&#8227; angolo = {self._angolo}"
+        description += f"<br/>&#8227; spessore = {self._attrs['stroke-width']}"
+        description += f"<br/>&#8227; colore = {translate_color(self._attrs['stroke'])}"
+        return description
+
+    def  _on_click(self, event, *args, **kwargs):
+        if self._show_info:
+            return self._on_mouseout(event)
+        document["shape_info"].innerHTML = self._description()
+        self._show_info = True
+
+    def _is_animating(self):
+        return len(self._new_attrs) > 0
+
+    def _update_path(self):
+        path = _line_path(self._a[0], self._a[1], self._b[0], self._b[1], self._angolo)
+        if not self._is_animating():
+            self._attrs["path"] = path
+            self.s.attr(self._attrs)
+        else:
+            self._new_attrs[-1]["path"] = path
+
+    def posizione(self, a, b):
+        self.a(*a)
+        return self.b(*b)
+
+    def a(self, x, y):
+        self._a = (x, y)
+        self._update_path()
+        return self
+
+    def b(self, x, y):
+        self._b = (x, y)
+        self._update_path()
+        return self
+
+    def ruota(self, angolo):
+        self._angolo = angolo
+        self._update_path()
+        return self
+
+    def colore(self, colore):
+        if not self._is_animating():
+            if colore in ITA_COLORS_TO_CSS:
+                self._attrs["stroke"] = ITA_COLORS_TO_CSS[colore.lower()]
+            else:
+                self._attrs["stroke"] = colore
+            self.s.attr(self._attrs)
+        else:
+            if colore in ITA_COLORS_TO_CSS:
+                self._new_attrs[-1]["stroke"] = ITA_COLORS_TO_CSS[colore.lower()]
+            else:
+                self._new_attrs[-1]["stroke"] = colore
+        return self
+
+    def spessore(self, spessore):
+        if not self._is_animating():
+            self._attrs["stroke-width"] = spessore
+            self.s.attr(self._attrs)
+        else:
+            self._new_attrs[-1]["stroke-width"] = spessore
+        return self
+
+    def aggiungi_animazione(self, durata=1):
+        self._new_attrs.append({})
+        self._durations.append(durata * 1000)
+        return self
+
+    def _callback(self):
+        if self._new_attrs:
+            new_attrs = self._new_attrs.pop(0)
+            duration = self._durations.pop(0)
+            animation = window.Raphael.animation(
+                new_attrs, duration, "ease-in-out", self._callback)
+            self.s.animate(animation.delay(0).repeat(None))
+
+    def anima(self, aspetta=0):
+        if self._new_attrs:
+            new_attrs = self._new_attrs.pop(0)
+            duration = self._durations.pop(0)
+            animation = window.Raphael.animation(
+                new_attrs, duration, "ease-in-out", self._callback)
+            self.s.animate(animation.delay(aspetta * 1000).repeat(None))
+        return self
+
+    def parti(self, aspetta=0):
+        return self.anima(aspetta)
 
 
 class forma(object):
@@ -1018,6 +1234,7 @@ class triangolo(forma):
             description += f"<br/>&#8227; dimensione bordo = {self._attrs['stroke-width']}"
             description += f"<br/>&#8227; colore bordo = {translate_color(self._attrs['stroke'])}"
         return description
+
 
 def callback(ev):
     paper.clear()
